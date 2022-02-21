@@ -1,7 +1,11 @@
 <script context="module">
-  export async function load({ context }) {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const posts = await res.json();
+  export async function load({ fetch }) {
+    //const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const res = await fetch("/blogpost.json");
+    //const posts = await res.json();
+    //need to de-structure since this is an object
+    const { posts } = await res.json();
+
     // console.log(window);
     if (res.ok) {
       return {
