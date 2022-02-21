@@ -2,6 +2,7 @@
   export async function load({ context }) {
     const res = await fetch("https://jsonplaceholder.typicode.com/posts");
     const posts = await res.json();
+    // console.log(window);
     if (res.ok) {
       return {
         props: {
@@ -25,7 +26,11 @@
   <ul>
     {#each posts as post}
       <li class=" py-2">
-        <a href="/" class="hover:text-blue-700">{post.title}</a>
+        <a
+          sveltekit:prefetch
+          href={`/blogpost/${post.id}`}
+          class="hover:text-gray-400">{post.title}</a
+        >
       </li>
     {/each}
   </ul>
